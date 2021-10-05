@@ -3,9 +3,10 @@ title: "t-test"
 author: "Sam Bogan"
 date: "10/4/2021"
 output: 
-  html_document: default
-  github_document: default
   pdf_document: default
+  github_document: default
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, include = FALSE}
@@ -130,7 +131,7 @@ h_skew <- hist(norm_skew, breaks = 100, plot = FALSE)
 
 # Plot the two distributions
 plot(h_skew, col = ifelse(abs(h_skew$breaks) < 1.5, 4, 2), 
-     main = "Normal distribution",
+     main = "Skewed distribution",
      xlab = "x")
 
 ```
@@ -160,21 +161,12 @@ hist(K_scaled,
 
 #Performing the $t$-test
 
-|           Now that we know our data are normally distributed, its time to compare species and treatment groups using the $t$-test. We will use R's 't.test' function using a two sided test. Two sided tests simply allow us to ask "Is the mean of one group significantly different from the other?". By contrast, a one sided test would ask "Is the mean of this group significantly greater than the other?". The output of a two sided $t$-test contains several metrics, two of which are $t$ and $p$. In essence, $t$ represents the ratio of differences in a value between groups over the total variation of that value. When the absolute value of $t$ is higher, discernable differences between groups are greater. The equation for calculating $t$ is illustrated below. This equation corresponds to the Student's $t$-test. We will be using Welch's $t$-test, the equation for Student's $t$ is more easily interprettable: 
-$$
-t = \frac{\overline{x_{1}}-\overline{x_{2}}}{s /\sqrt{n}}
-$$ 
-
-$t$	=	t statistic
-$m$	=	mean of 
-$\mu$	=	theoretical value representing null hypothesis
-$s$	=	standard deviation of all observations
-$n$	=	sample size
+|           Now that we know our data are normally distributed, its time to compare species and treatment groups using the $t$-test. We will use R's 't.test' function using a two sided test. Two sided tests simply allow us to ask "Is the mean of one group significantly different from the other?". By contrast, a one sided test would ask "Is the mean of this group significantly greater than the other?". The output of a two sided $t$-test contains several metrics, two of which are $t$ and $p$.
 
 |           $p$, as described earlier, is the $p$-value: the probability that observations in two groups could have been drawn from a single distribution. Follow along in with the code chunks below to see how we take our data sheet (Protist_K_Data),  input it to the 't.test' function, and interpret the results output by 't.test'.
 
 ##Comparing $K$ of species cultured alone
-|         First we will apply a two sided $t$-test to $K$ values of species A vs. B when grown alone. In plain terms, this asks "Do populations of species A and B have different carrying capacities?" 
+|           First we will apply a two sided $t$-test to $K$ values of species A vs. B when grown alone. In plain terms, this asks "Do populations of species A and B have different carrying capacities?" 
 
 ```{r}
 
